@@ -1,0 +1,90 @@
+---
+title: "Introduction to basemodels"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to basemodels}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(basemodels)
+```
+
+## Introduction
+
+This is an introduction to the package `basemodels`. This package provides equivalent functions for the dummy classifier and regressor used in 'Python' 'scikit-learn' library with some modifications. We aim to help R users easily identify baseline performance for their classification and regression problems. Our baseline models do not use any predictors to make predictions. They are useful in cases of class imbalance, multi-class classification, and when users want to quickly compare their statistical and machine learning models with several baseline models to see how much they have improved. 
+
+## Examples
+
+We show a few examples here. First, we split the data into training and testing sets.
+
+```{r}
+set.seed(2023)
+index <- sample(1:nrow(iris), nrow(iris) * 0.8)
+train_data <- iris[index,]
+test_data <- iris[-index,]
+```
+
+We can use the dummyClassifier method for the train() function in `caret` package. 
+
+```{r}
+ctrl1 <- caret::trainControl(method = "none")
+# Train a dummy classifier with caret
+dummy_model <- caret::train(Species ~ ., 
+                            data = train_data,
+                            method = dummyClassifier,
+                            strategy = "stratified",
+                               trControl = ctrl1)
+
+# Make predictions using the trained dummy classifier
+pred_vec <- predict(dummy_model, test_data)
+
+# Evaluate the performance of the dummy classifier
+conf_matrix <- caret::confusionMatrix(pred_vec, test_data$Species)
+print(conf_matrix)
+```
+
+For a classification problem, we can use the dummy_classifier() function. 
+
+```{r}
+dummy_model <- dummy_classifier(train_data$Species, strategy = "proportional", random_state = 2024)
+
+# Make predictions using the trained dummy classifier
+pred_vec <- predict_dummy_classifier(dummy_model, test_data)
+
+# Evaluate the performance of the dummy classifier
+conf_matrix <- caret::confusionMatrix(pred_vec, test_data$Species)
+print(conf_matrix)
+```
+
+For a regression problem, we can use the dummy_regressor() function. 
+
+```{r}
+# Make predictions using the trained dummy regressor
+reg_model <- dummy_regressor(train_data$Sepal.Length, strategy = "median")
+y_hat <- predict_dummy_regressor(reg_model, test_data)
+# Find mean squared error
+mean((test_data$Sepal.Length-y_hat)^2)
+```
+
+The dummyRegressor method can be used for the train() function in `caret` package. 
+
+```{r}
+ctrl1 <- caret::trainControl(method = "none")
+# Train a dummy regressor with caret
+reg_model <- caret::train(Sepal.Length ~ ., data = train_data,
+                               method = dummyRegressor,
+                               strategy = "median",
+                               trControl = ctrl1)
+y_hat <- predict(reg_model, test_data)
+# Find mean squared error
+mean((test_data$Sepal.Length-y_hat)^2)
+```

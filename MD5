@@ -1,4 +1,4 @@
-a915437bdd2e8b43d6e7fc9c7162fba4 *DESCRIPTION
+42dd39e6eaf9b74ca050146ff024e0d9 *DESCRIPTION
 c1cb564d344bcfe3106534c0ca2bb38c *LICENSE
 b679158bba573142c9cef488907a03ee *NAMESPACE
 499c2ca3c64f5193da71f5cf8e3dbaec *R/dummy_classifier.R
@@ -9,7 +9,12 @@ b0a568070fe7b51d06dbb8cb273ca56a *R/dummy_classifier_caret.R
 6304c76d2879e389a70b7efbecd3ded0 *R/predict_dummy_classifier.R
 4c2f2f66d3751b9048bb919ad6085653 *R/predict_dummy_regressor.R
 c843e1b1b2c17f81e484be62b3bb3ecd *R/predict_proba.R
-d6488029852af45e224ba786244da348 *README.md
+bc842903aab7727dbe5c61463b666e74 *README.md
+15b71b92bd57a3c3792ec5d8ef96cf70 *build/vignette.rds
+a0c2e65c64a7e0e33fe5d9247eb6ea03 *inst/CITATION
+df2b2a1cc0e965889b02256ccc05e8d9 *inst/doc/intro_to_basemodels.R
+97c0289e992a60428189f30dc9ca2ca5 *inst/doc/intro_to_basemodels.Rmd
+10744b1bc1ce648eb6a8ec989eed57aa *inst/doc/intro_to_basemodels.html
 9720289c343d64b83edfe0d3520735cc *man/dummyClassifier.Rd
 ea451f17eda4b3db5f0340060fa51af1 *man/dummyRegressor.Rd
 b4c191e23edb8ff2c71fc5e6f90bc6be *man/dummy_classifier.Rd
@@ -19,3 +24,4 @@ ac48078f7bbb04033d50d609001ad625 *man/dummy_regressor.Rd
 b710e3b47d181c40e964b0be1eb9b321 *man/predict_dummy_classifier.Rd
 556211f6e8cc1a81e9728b1e68dd06bb *man/predict_dummy_regressor.Rd
 ff2e3e21062daf21887a0544203d9d65 *man/predict_proba.Rd
+97c0289e992a60428189f30dc9ca2ca5 *vignettes/intro_to_basemodels.Rmd
